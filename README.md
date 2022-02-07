@@ -1,121 +1,76 @@
-## Atte
-会社の勤怠管理システム
-<img width="1413" alt="スクリーンショット 2022-02-01 23 38 13" src="https://user-images.githubusercontent.com/86700967/151989728-f64177b8-b086-4606-91cc-d66ea4cf4450.png">
-<img width="1408" alt="スクリーンショット 2022-02-01 23 38 22" src="https://user-images.githubusercontent.com/86700967/151989731-ecd48d4e-2d86-4ee2-b31d-53395ef8451d.png">
-<img width="1414" alt="スクリーンショット 2022-02-01 23 35 16" src="https://user-images.githubusercontent.com/86700967/151989702-afe8386e-70a4-4f16-a0e2-82810fca4950.png">
-<img width="1414" alt="スクリーンショット 2022-02-01 23 36 03" src="https://user-images.githubusercontent.com/86700967/151989718-cdd0e837-928f-4d4f-a832-53eb785011c9.png">
-<img width="1410" alt="スクリーンショット 2022-02-01 23 36 31" src="https://user-images.githubusercontent.com/86700967/151989721-53d8d3cf-29fa-4099-aef5-cddc265605a8.png">
-<img width="1410" alt="スクリーンショット 2022-02-01 23 37 01" src="https://user-images.githubusercontent.com/86700967/151989724-6ab215bd-aa96-4a1b-83fb-d36134292b44.png">
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-## 作成した目的
-スクールの課題として取り組みました。模擬案件を通じて、実際の開発に近いものを体験します。
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## 使用技術
-フロントエンド
+## About Laravel
 
-・HTML/CSS
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and
+creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in
+many web projects, such as:
 
-・JavaScript
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache)
+  storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-・バックエンド
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-・PHP 7.4.23
+## Learning Laravel
 
-・Laravel Framework 8.68.1
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all
+modern web application frameworks, making it a breeze to get started with the framework.
 
-・Laravel breeze
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video
+tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging
+into our comprehensive video library.
 
-・Mysql 5.7.32    
+## Laravel Sponsors
 
-インフラ
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in
+becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-・環境の切り分け
+### Premium Partners
 
-・テスト
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[CMS Max](https://www.cmsmax.com/)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
+- **[Romega Software](https://romegasoftware.com)**
 
-・Docker
+## Contributing
 
-・Heroku
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in
+the [Laravel documentation](https://laravel.com/docs/contributions).
 
-・ClearDB MySQL(Heroku)
+## Code of Conduct
 
-## 設計書
+In order to ensure that the Laravel community is welcoming to all, please review and abide by
+the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-<img width="963" alt="スクリーンショット 2022-02-02 19 06 44" src="https://user-images.githubusercontent.com/86700967/152133566-82573a9a-a01e-4a0b-8b76-58abd4f30551.png">
-<img width="580" alt="スクリーンショット 2022-02-02 19 06 55" src="https://user-images.githubusercontent.com/86700967/152133589-7c07d29c-ff0f-4967-ae37-92c20c48a0da.png">
-<img width="475" alt="スクリーンショット 2022-02-02 19 07 04" src="https://user-images.githubusercontent.com/86700967/152133590-30d544d0-ec41-457a-b384-f4c1eb4fe55f.png">
-<img width="634" alt="スクリーンショット 2022-02-02 19 11 58" src="https://user-images.githubusercontent.com/86700967/152134598-e4022463-0dfb-4fde-946a-f9457e190db2.png">
+## Security Vulnerabilities
 
-## ER図
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell
+via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-<img width="905" alt="スクリーンショット 2022-02-02 19 02 20" src="https://user-images.githubusercontent.com/86700967/152132768-6be22537-0f8b-43fe-82a8-1db0fc4c5461.png">
+## License
 
-# 環境を構築する方法
-
-## MAMP / XAMPP
-環境構築（Mac）
-
-MAMPをインストールします
-
-https://www.mamp.info/en/downloads/
-
-環境構築（Windows）
-
-XAMPPをインストールする
-
-https://www.apachefriends.org/jp/index.html
-
-## クローン
-git clone -b master https://github.com/yomogi-tyannneru/ADVANCE.git
-
-## メール認証
-
-```php
-MAIL_DRIVER = smtp
-MAIL_HOST = smtp.gmail.com
-MAIL_PORT = 587
-MAIL_USERNAME =自分のGmail
-MAIL_PASSWORD =自分のアプリのパスワード
-MAIL_ENCRYPTION = tls
-MAIL_FROM_ADDRESS =自分のGmail
-MAIL_FROM_NAME =任意のアプリ名
-```
-
-.envファイルを上記に変更します
-
-○参考サイト
-
-[https://zenn.dev/kazushino/articles/67da2015865ae117444c]（https://zenn.dev/kazushino/articles/67da2015865ae117444c）
-
-## テスト
-PHPUnitを使用してテストを作成する
-
-vendor / bin / phpunitはテストコードです。
-
-vendor / bin / phpunit tests / Feature / Auth / AuthenticationTest.phpは、認定のみのテストです。
-
-## Docker
-Dockerを使用して環境を構築する
-
-Dockerのインストール（Mac）
-
-https://www.docker.com/products/docker-desktop
-
-Dockerのインストール（Windows）
-
-https://hub.docker.com/editions/community/docker-ce-desktop-windows/
-
-## 環境の切り分け
-開発環境と本番環境の切り分けを行います。
-
-## Heroku
-https://lit-peak-96335.herokuapp.com/
-
-ログイン情報
-
-アカウント名:a
-
-email:haruto.matsuda@gmail.com
-
-パスワード：aaaaaaaa
-
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -3,100 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PunchInRequest;
+use App\Http\Requests\PunchOutRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Time;
-use App\Common\validation;
 
 class AttendanceController extends Controller
 {
-    //打刻ページ
-    public function index(Request $request)
+    // 打刻
+    public function index()
     {
         $user = Auth::user();
         return view('auth.index', compact('user'));
     }
 
-    // 出勤処理
-    public function punchIn(Request $request)
+    // 出勤
+    public function punchIn(PunchInRequest $request)
     {
-        // $user = Auth::user();
-        // $today = new Carbon('today');
-        // $punch_in_data = User::find($user->id)->times
-        //     ->where('date', $today)
-        //     ->first();
+        Time::Where('user_id', Auth::id())
+            ->where('date', Carbon::today())
+            ->firstOrCreate(
+                [
+                    'user_id' => Auth::id(),
+                    'date' => Carbon::today(),
+                    'punch_in' => Carbon::now()
+                ]
+            );
 
-        // if ($punch_in_data) {
-        //     $request->session()->flash('error_message', '既に勤務を開始しているため勤務開始出来ません');
-        //     return redirect(route('index'));
-        // }
-
-
-        $param = [
-            'today' => $today,
-            'user' => $user,
-            'punch_in_data' => $punch_in_data,
-            'request' => $request
-        ];
-        validation::validation($param);
-
-        DB::table('times')->insert(
-            [
-                'user_id' => Auth::user()['id'],
-                'date' => Carbon::now(),
-                'punch_in' => Carbon::now()
-                
-            ]
-        );
         $request->session()->flash('success_message', '勤務開始しました');
         return redirect(route('index'));
     }
 
-    // 退勤処理
-    public function punchOut(Request $request)
+    // 退勤
+    public function punchOut(PunchOutRequest $request)
     {
-        $user = Auth::user();
-        $today = new Carbon('today');
-        $punch_in_data = User::find($user->id)->times
-            ->whereNotNull('punch_in')
-            ->whereNull('punch_out')
-            ->where('date', '<=', $today)
-            ->first();
-        if ($punch_in_data === null) {
-            $request->session()->flash('error_message', '今日またはそれ以前の勤務開始打刻がないため勤務終了出来ません');
-            return redirect(route('index'));
-        }
-
-        $break_start_data = Time::find($punch_in_data->id)->rests
-            ->whereNotNull('break_start')
-            ->whereNull('break_end')
-            ->first();
-        if ($break_start_data) {
-            $request->session()->flash('error_message', '休憩終了打刻をしていないため勤務終了出来ません');
-            return redirect(route('index'));
-        }
-
-        $punch_out_time = Carbon::now();
-        $work_time = $this->time_diff(strtotime($punch_in_data->punch_in), strtotime($punch_out_time));
-
-        DB::table('times')
-            ->where('id', $punch_in_data->id)
-            ->update([
-                'punch_out' => $punch_out_time,
-                'work_time' => $work_time,
-            ]);
-
-        // Time::find($punch_in_data->id)->rests
-        //     ->update([
-        //         'punch_out' => $punch_out_time,
-        //         'work_time' => $work_time,
-        //     ]);
-
-        // Time::find($punch_in_data->id)->rests
-        //     ->update($punch_out_time,$work_time
-        //     );
+        Time::Where('user_id', Auth::id())
+            ->where('date', Carbon::today())
+            ->first()
+            ->update(
+                [
+                    'punch_out' => Carbon::now()
+                ]
+            );
 
         $request->session()->flash('success_message', '勤務終了しました');
         return redirect(route('index'));
@@ -177,6 +128,7 @@ class AttendanceController extends Controller
     //日付別勤怠ページ
     public function attendance(Request $request)
     {
+
         $all_punch_in_data = DB::table('times')
             ->leftJoin('users', 'users.id', '=', 'times.user_id')
             ->select('times.*', 'users.name')
@@ -201,10 +153,10 @@ class AttendanceController extends Controller
 
         $today_kari
             = [
-                'today' => '日付',
-                'times_data' => [],
-                'rest_data' => []
-            ];
+            'today' => '日付',
+            'times_data' => [],
+            'rest_data' => []
+        ];
 
         if (is_array($all_date) && empty($all_date)) {
             $request->session()->flash('error_message', '打刻データがありません');
@@ -228,7 +180,7 @@ class AttendanceController extends Controller
         foreach ($break_start_data as $key => $rest) {
             if (!empty($rest->break_start) && !empty($rest->break_end)) {
                 $from = strtotime($rest->break_start);
-                $to   = strtotime($rest->break_end);
+                $to = strtotime($rest->break_end);
                 if (isset($calclate_rest_data[$rest->time_id])) {
                     $rest_time_tmp = $calclate_rest_data[$rest->time_id];
                 } else {
@@ -275,7 +227,7 @@ class AttendanceController extends Controller
         foreach ($break_start_data as $key => $rest) {
             if (!empty($rest->break_start) && !empty($rest->break_end)) {
                 $from = strtotime($rest->break_start);
-                $to   = strtotime($rest->break_end);
+                $to = strtotime($rest->break_end);
                 if (isset($calclate_rest_data[$rest->time_id])) {
                     $rest_time_tmp = $calclate_rest_data[$rest->time_id];
                 } else {
@@ -321,7 +273,7 @@ class AttendanceController extends Controller
         foreach ($break_start_data as $key => $rest) {
             if (!empty($rest->break_start) && !empty($rest->break_end)) {
                 $from = strtotime($rest->break_start);
-                $to   = strtotime($rest->break_end);
+                $to = strtotime($rest->break_end);
                 if (isset($calclate_rest_data[$rest->time_id])) {
                     $rest_time_tmp = $calclate_rest_data[$rest->time_id];
                 } else {
@@ -367,5 +319,12 @@ class AttendanceController extends Controller
             $s = 0;
         }
         return ($h * 60 * 60) + ($m * 60) + $s;
+    }
+
+    //勤怠一覧ページ
+    public function attendances(Request $request)
+    {
+        $times = Time::with('user', 'rests')->orderBy('date')->paginate(10);
+        return view('attendances', compact('times'));
     }
 }

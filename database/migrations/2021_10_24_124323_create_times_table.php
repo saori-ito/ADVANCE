@@ -19,8 +19,9 @@ class CreateTimesTable extends Migration
             $table->date('date')->nullable();
             $table->time('punch_in')->nullable();
             $table->time('punch_out')->nullable();
-            $table->time('work_time')->nullable();
+//            $table->time('work_time')->nullable();
             $table->timestamps();
+            $table->unique(['user_id', 'date']);
         });
     }
 

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     /**
      *ユーザーの勤怠を取得
      */
@@ -49,4 +49,13 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         return $this->hasMany(Time::class);
     }
+
+    /**
+     *ユーザーの休憩を取得
+     */
+    public function rests()
+    {
+        return $this->hasMany(Rest::class);
+    }
+
 }

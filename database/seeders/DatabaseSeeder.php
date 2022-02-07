@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // テストの際フェイクのデータを10個作成
-        \App\Models\User::factory(10)->create();
+        $this->call(RestTableSeeder::class);
     }
 }

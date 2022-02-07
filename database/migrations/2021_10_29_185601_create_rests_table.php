@@ -21,6 +21,7 @@ class CreateRestsTable extends Migration
             $table->time('break_start')->nullable();
             $table->time('break_end')->nullable();
             $table->timestamps();
+            $table->unique(['user_id', 'time_id', 'date']);
         });
     }
 
